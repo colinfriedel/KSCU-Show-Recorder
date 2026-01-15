@@ -1,0 +1,6 @@
+
+#ignore env
+.env
+
+#ignore api keys and app passwords
+*.pem

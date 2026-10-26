@@ -1,0 +1,6 @@
+requests
+pytz
+python-dotenv
+schedule
+yagmail
+boto3

@@ -1,10 +1,16 @@
+import os
+import sys
 import requests
 import json
 from datetime import datetime, timedelta
 import pytz
+from dotenv import load_dotenv
 
-API_KEY = "fsr9w2R8irUUqUkze_QUcyB3"
-STATION_ID = "KSCU"
+# The Spinitron API key is read from a .env file (see .env.example), never from the code.
+load_dotenv()
+
+API_KEY = os.getenv("SPINITRON_API_KEY")
+STATION_ID = os.getenv("SPINITRON_STATION_ID", "KSCU")
 HEADERS = {"Authorization": f"Bearer {API_KEY}"}
 
 def get_persona_info(persona_id):
@@ -76,5 +82,7 @@ def download_week_schedule():
         json.dump(schedule, f, indent=2)
     print(f"Saved {len(schedule)} shows to schedule.json")
 
-# Run it
-download_week_schedule()
+if __name__ == "__main__":
+    if not API_KEY:
+        sys.exit("SPINITRON_API_KEY is not set. Copy .env.example to .env and fill it in.")
+    download_week_schedule()

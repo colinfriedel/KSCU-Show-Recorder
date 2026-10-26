@@ -1,6 +1,13 @@
-
-#ignore env
+# Secrets and local config
 .env
-
-#ignore api keys and app passwords
 *.pem
+
+# Generated schedule contains DJ names and email addresses
+schedule.json
+
+# Recordings and Python artifacts
+*.mp3
+__pycache__/
+*.pyc
+venv/
+.venv/
